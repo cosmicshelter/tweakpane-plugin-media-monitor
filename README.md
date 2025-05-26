@@ -2,7 +2,7 @@
 
 Media monitor blade plugin for [Tweakpane][tweakpane].
 
-![](https://cosmicshelter.github.io/tweakpane-plugin-thumbnail-grid/test/demo.png)
+![](https://cosmicshelter.github.io/tweakpane-plugin-media-monitor/test/demo.png)
 
 ## Installation
 
