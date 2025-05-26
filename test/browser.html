@@ -7,23 +7,60 @@
 <body>
 	<script type="module">
 		import {Pane} from '../node_modules/tweakpane/dist/tweakpane.min.js';
-		import * as TweakpaneTemplatePlugin from '../dist/tweakpane-plugin-template.js';
+		import * as TweakpaneTemplatePlugin from '../dist/tweakpane-plugin-media-monitor.js';
 
-		const params = {
-			prop: 3,
-		};
+		/**
+		 * Canvas XP
+		 */
+		const canvas = document.createElement('canvas');
+		canvas.width = 100;
+		canvas.height = 100;
 
+		const rectSize = 10;
+		const context = canvas.getContext('2d');
+        
+        let time = 0;
+        const squares = [];
+        
+        // Initialize squares with random base hues
+        for (let x = 0; x < canvas.width; x += rectSize) {
+            for (let y = 0; y < canvas.height; y += rectSize) {
+                squares.push({ x, y, baseHue: Math.random() * 360 });
+            }
+        }
+
+		function animate() {
+            time += 0.02;
+            
+            squares.forEach(square => {
+                const hueOffset = time * 100;
+                const hue = (square.baseHue + hueOffset) % 360;
+                
+                context.fillStyle = `hsl(${hue}, 80%, 60%)`;
+                context.fillRect(square.x, square.y, rectSize, rectSize);
+            });
+            
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+
+		/**
+		 * Tweakpane
+		 */
 		const pane = new Pane();
-		// Register plugin
+
 		pane.registerPlugin(TweakpaneTemplatePlugin);
 
-		// TODO: Update parameters for your plugin
-		pane.addBinding(params, 'prop', {
-			view: 'dots',
-		}).on('change', (ev) => {
-			console.log(ev.value);
+		const blade = pane.addBlade({
+			view: 'media-monitor',
+			media: canvas,
+			label: 'Media'
 		});
 
+		console.log(blade);
+	
 		window.pane = pane;
 	</script>
 </body>
