@@ -12,7 +12,6 @@
   ],
   "scripts": {
     "prepare": "run-s clean build",
-    "prepublishOnly": "npm test",
     "start": "run-p watch server",
     "test": "eslint --ext .ts \"src/**/*.ts\"",
     "assets": "run-s clean build assets:version assets:zip",

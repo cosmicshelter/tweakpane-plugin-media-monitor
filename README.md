@@ -1,17 +1,19 @@
 # Tweakpane plugin media monitor
 
-Plugin template of an input binding for [Tweakpane][tweakpane].
+Media monitor blade plugin for [Tweakpane][tweakpane].
+
+![](https://cosmicshelter.github.io/tweakpane-plugin-thumbnail-grid/test/demo.png)
 
 ## Installation
 
 ### Browser
 ```html
 <script type="module">
-  import {Pane} as Tweakpane from './tweakpane.min.js';
-  import * as TweakpaneTemplatePlugin from './tweakpane-plugin-media-monitor.min.js';
+import {Pane} as Tweakpane from './tweakpane.min.js';
+import * as TweakpaneTemplatePlugin from './tweakpane-plugin-media-monitor.min.js';
 
-  const pane = new Pane();
-  pane.registerPlugin(TweakpaneTemplatePlugin);
+const pane = new Pane();
+pane.registerPlugin(TweakpaneTemplatePlugin);
 </script>
 ```
 
