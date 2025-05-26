@@ -15,6 +15,7 @@ interface Config {
 	valueController: MediaController;
 	label?: string,
 	media?: Media,
+	height?: number,
 }
 
 export class MediaMonitorController extends BladeController<LabelView> {

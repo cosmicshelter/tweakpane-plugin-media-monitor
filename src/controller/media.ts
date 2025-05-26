@@ -9,6 +9,7 @@ import { Media } from '../plugin.js';
 interface Config {  
     media: Media,
     label?: string,
+    height?: number,
 }
 export type MediaControllerConfig = Config;
 
@@ -21,11 +22,13 @@ export class MediaController implements Controller<PlainView> {
 	public readonly viewProps: ViewProps;
 	public readonly media: Media;
 	public readonly label: string | undefined;
+	public readonly height: number | undefined;
 	public readonly mediaContainer: HTMLDivElement;
 	public readonly labelContainer: HTMLDivElement | undefined;
 
 	constructor(doc: Document, config: Config) {
         this.label = config.label;
+        this.height = config.height;
         
 		this.viewProps = ViewProps.create();
 		this.viewProps.handleDispose(() => {
@@ -60,6 +63,10 @@ export class MediaController implements Controller<PlainView> {
 
         div.classList.add(className('media-container'));
 
+        if (this.height) {
+            div.style.height = `${this.height}px`;
+        }
+
         this.view.element.appendChild(div);
 
         return div;
@@ -70,17 +77,9 @@ export class MediaController implements Controller<PlainView> {
         const isImage = media instanceof HTMLImageElement;
         const isVideo = media instanceof HTMLVideoElement;
 
-        if (isCanvas) {
-            return this.createCanvas_(media);
-        }
-
-        if (isImage) {
-            return this.createImage_(media);
-        }
-
-        if (isVideo) {
-            return this.createVideo_(media);
-        }
+        if (isCanvas) return this.createCanvas_(media);
+        if (isImage) return this.createImage_(media);
+        if (isVideo) return this.createVideo_(media);
 
         return media;
     }
@@ -89,7 +88,9 @@ export class MediaController implements Controller<PlainView> {
         this.mediaContainer.appendChild(canvas);
 
         canvas.classList.add(className('media'));
-        canvas.classList.add(className('video'));
+        canvas.classList.add(className('canvas'));
+
+        if (this.height) canvas.classList.add('fixed-height');
 
         return canvas;
     }
@@ -99,6 +100,8 @@ export class MediaController implements Controller<PlainView> {
 
         image.classList.add(className('media'));
         image.classList.add(className('video'));
+
+        if (this.height) image.classList.add('fixed-height');
 
         return image;
     }
@@ -112,6 +115,8 @@ export class MediaController implements Controller<PlainView> {
 
         video.classList.add(className('media'));
         video.classList.add(className('video'));
+
+        if (this.height) video.classList.add('fixed-height');
 
         return video;
     }

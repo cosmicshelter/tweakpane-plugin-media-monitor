@@ -48,9 +48,11 @@ export const PluginMediaMonitor: BladePlugin<MediaMonitorParams> =
 				valueController: new MediaController(args.document, {
 					media: args.params.media,	
 					label: args.params.label,
+					height: args.params.height,
 				}),
 				media: args.params.media,
 				label: args.params.label,
+				height: args.params.height,
 			});
 		},
 

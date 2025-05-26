@@ -1,6 +1,6 @@
 {
   "name": "tweakpane-plugin-media-monitor",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Plugin template for Tweakpane",
   "main": "dist/tweakpane-plugin-media-monitor.js",
   "type": "module",
