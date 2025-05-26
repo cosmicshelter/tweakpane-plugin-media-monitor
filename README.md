@@ -21,10 +21,10 @@ pane.registerPlugin(TweakpaneTemplatePlugin);
 ### Package
 ```js
 import {Pane} from 'tweakpane';
-import * as TemplatePlugin from 'tweakpane-plugin-media-monitor';
+import * as TweakpanePluginMediaMonitor from 'tweakpane-plugin-media-monitor';
 
 const pane = new Pane();
-pane.registerPlugin(TemplatePlugin);
+pane.registerPlugin(TweakpanePluginMediaMonitor);
 ```
 
 
