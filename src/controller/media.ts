@@ -32,7 +32,7 @@ export class MediaController implements Controller<PlainView> {
         
 		this.viewProps = ViewProps.create();
 		this.viewProps.handleDispose(() => {
-			// TODO: dispose
+			this.view.element.remove();
 		});
 
 		this.view = new PlainView(doc, {
